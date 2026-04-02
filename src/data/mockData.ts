@@ -1,0 +1,103 @@
+import { format, subDays } from 'date-fns';
+import type { Transaction } from '../types';
+
+const generateDate = (daysAgo: number) => format(subDays(new Date(), daysAgo), 'yyyy-MM-dd');
+
+export const getMockTransactions = (): Transaction[] => [
+  {
+    id: '1',
+    date: generateDate(1),
+    amount: 15.50,
+    category: 'Food',
+    type: 'expense',
+    description: 'Lunch at Cafe',
+  },
+  {
+    id: '2',
+    date: generateDate(2),
+    amount: 3200,
+    category: 'Salary',
+    type: 'income',
+    description: 'Monthly Salary',
+  },
+  {
+    id: '3',
+    date: generateDate(3),
+    amount: 125,
+    category: 'Utilities',
+    type: 'expense',
+    description: 'Electric Bill',
+  },
+  {
+    id: '4',
+    date: generateDate(5),
+    amount: 45.99,
+    category: 'Transportation',
+    type: 'expense',
+    description: 'Gas Station',
+  },
+  {
+    id: '5',
+    date: generateDate(7),
+    amount: 1500,
+    category: 'Housing',
+    type: 'expense',
+    description: 'Rent',
+  },
+  {
+    id: '6',
+    date: generateDate(10),
+    amount: 250,
+    category: 'Saving, Investing, & Debt Payments',
+    type: 'expense',
+    description: 'Index Funds',
+  },
+  {
+    id: '7',
+    date: generateDate(12),
+    amount: 60.00,
+    category: 'Recreation & Entertainment',
+    type: 'expense',
+    description: 'Video game',
+  },
+  {
+    id: '8',
+    date: generateDate(14),
+    amount: 120.00,
+    category: 'Food',
+    type: 'expense',
+    description: 'Groceries',
+  },
+  {
+    id: '9',
+    date: generateDate(16),
+    amount: 50.00,
+    category: 'Bonus',
+    type: 'income',
+    description: 'Cashback reward',
+  },
+  {
+    id: '10',
+    date: generateDate(20),
+    amount: 30.00,
+    category: 'Transportation',
+    type: 'expense',
+    description: 'Uber ride',
+  },
+  {
+    id: '11',
+    date: generateDate(25),
+    amount: 35.00,
+    category: 'Personal Spending',
+    type: 'expense',
+    description: 'Haircut',
+  },
+  {
+    id: '12',
+    date: generateDate(28),
+    amount: 200.00,
+    category: 'Medical & Healthcare',
+    type: 'expense',
+    description: 'Dentist visit',
+  },
+];

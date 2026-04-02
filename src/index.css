@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #10b981;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  :root {
+    /* Premium Light Mode Palette */
+    --background: #f8fafc; /* Very subtle slate tint */
+    --foreground: #020617;
+    --card: #ffffff;
+    --card-foreground: #020617;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #10b981;
+    --primary: #10b981;
+    --primary-foreground: #ffffff;
+    --destructive: #ef4444; 
+    --destructive-foreground: #ffffff;
+  }
+
+  .dark {
+    /* Premium Deep Dark Mode */
+    --background: #020617; /* Slate 950 - deep immersive black/blue */
+    --foreground: #f8fafc;
+    --card: #0f172a; /* Slate 900 */
+    --card-foreground: #f8fafc;
+    --border: #1e293b;
+    --input: #1e293b;
+    --ring: #10b981; 
+    --primary: #10b981;
+    --primary-foreground: #ffffff;
+    --destructive: #f87171;
+    --destructive-foreground: #0f172a;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+  
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    /* Subtle radial gradients to make backgrounds feel alive without distraction */
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.04), transparent 30%),
+      radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.04), transparent 30%);
+    background-attachment: fixed;
+  }
+  
+  .dark body {
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.08), transparent 30%),
+      radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.04), transparent 30%);
+    background-attachment: fixed;
+  }
+}
