@@ -7,6 +7,7 @@ import { Login } from './pages/Login'
 import { Toaster } from 'sonner'
 import { VoiceAssistant } from './components/Assistant/VoiceAssistant'
 import { CommandPalette } from './components/UI/CommandPalette'
+import { Background3D } from './components/UI/Background3D'
 
 function App() {
   const { theme, isAuthenticated } = useStore()
@@ -24,6 +25,7 @@ function App() {
   if (!isAuthenticated) {
     return (
       <div className={theme}>
+        <Background3D />
         <Login />
         <Toaster theme={theme === 'dark' ? 'dark' : 'light'} position="top-center" />
       </div>
@@ -32,6 +34,7 @@ function App() {
 
   return (
     <div className={theme}>
+      <Background3D />
       <CommandPalette setActivePage={setActivePage} />
       <VoiceAssistant />
       <Layout activePage={activePage} setActivePage={setActivePage}>

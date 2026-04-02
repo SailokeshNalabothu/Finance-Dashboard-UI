@@ -15,6 +15,7 @@ export function formatCurrency(amount: number, currency: Currency): string {
   }).format(amount);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function filterTransactions(transactions: any[], dateFilter: string): any[] {
   if (dateFilter === 'all') return transactions;
   

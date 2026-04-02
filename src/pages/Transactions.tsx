@@ -53,8 +53,8 @@ export function Transactions() {
 
     // Sort
     result.sort((a, b) => {
-      let valA = a[sortField];
-      let valB = b[sortField];
+      const valA = String(a[sortField]);
+      const valB = String(b[sortField]);
       
       // Basic string comparison for dates works because of yyyy-MM-dd format
       if (valA < valB) return sortOrder === 'asc' ? -1 : 1;
@@ -114,7 +114,7 @@ export function Transactions() {
       document.body.removeChild(link);
       
       toast.success("CSV file downloaded successfully!");
-    } catch (e) {
+    } catch {
       toast.error("Failed to export data.");
     }
   };
@@ -130,6 +130,7 @@ export function Transactions() {
       doc.text(`Generated: ${format(new Date(), 'PPP')}`, 14, 22);
       
       const tableColumn = ["ID", "Date", "Description", "Category", "Type", "Amount"];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const tableRows: any[] = [];
       
       transactions.forEach(tx => {
@@ -155,7 +156,7 @@ export function Transactions() {
       
       doc.save(`FinDash_Report_${format(new Date(), 'yyyy-MM-dd')}.pdf`);
       toast.success("PDF Report generated successfully!");
-    } catch (e) {
+    } catch {
       toast.error("Failed to generate PDF document.");
     }
   };

@@ -31,11 +31,13 @@ export function TransactionForm({ initialData, onClose }: TransactionFormProps) 
 
   useEffect(() => {
     if (initialData) {
+      /* eslint-disable react-hooks/set-state-in-effect */
       setDate(initialData.date);
       setAmount(initialData.amount.toString());
       setCategory(initialData.category);
       setType(initialData.type);
       setDescription(initialData.description || '');
+      /* eslint-enable react-hooks/set-state-in-effect */
     }
   }, [initialData]);
 
