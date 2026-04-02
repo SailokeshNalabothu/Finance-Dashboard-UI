@@ -11,6 +11,8 @@ import type { Transaction, TransactionType } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 import { formatCurrency } from '../lib/utils';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 export function Transactions() {
   const { transactions, role, deleteTransaction, currency } = useStore();
@@ -117,6 +119,47 @@ export function Transactions() {
     }
   };
 
+  const handleExportPDF = () => {
+    if (transactions.length === 0) {
+      toast.error("No transactions available to export.");
+      return;
+    }
+    try {
+      const doc = new jsPDF();
+      doc.text("FinDash - Financial Statement", 14, 15);
+      doc.text(`Generated: ${format(new Date(), 'PPP')}`, 14, 22);
+      
+      const tableColumn = ["ID", "Date", "Description", "Category", "Type", "Amount"];
+      const tableRows: any[] = [];
+      
+      transactions.forEach(tx => {
+        const txData = [
+          tx.id.substring(0, 8),
+          tx.date,
+          tx.description || '-',
+          tx.category,
+          tx.type,
+          `${tx.type === 'income' ? '+' : '-'}${formatCurrency(tx.amount, currency)}`
+        ];
+        tableRows.push(txData);
+      });
+      
+      autoTable(doc, {
+        head: [tableColumn],
+        body: tableRows,
+        startY: 30,
+        theme: 'grid',
+        styles: { fontSize: 9 },
+        headStyles: { fillColor: [15, 23, 42] }
+      });
+      
+      doc.save(`FinDash_Report_${format(new Date(), 'yyyy-MM-dd')}.pdf`);
+      toast.success("PDF Report generated successfully!");
+    } catch (e) {
+      toast.error("Failed to generate PDF document.");
+    }
+  };
+
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -127,7 +170,10 @@ export function Transactions() {
         
         <div className="flex w-full sm:w-auto items-center gap-3">
           <Button variant="outline" onClick={handleExport} className="w-full sm:w-auto shadow-md hover:bg-slate-50 dark:hover:bg-slate-800">
-            <Download className="mr-2 h-4 w-4" /> Export CSV
+            <Download className="mr-2 h-4 w-4" /> CSV
+          </Button>
+          <Button variant="outline" onClick={handleExportPDF} className="w-full sm:w-auto shadow-md hover:bg-slate-50 dark:hover:bg-slate-800 border-indigo-200 dark:border-indigo-800 text-indigo-600 dark:text-indigo-400">
+            <Download className="mr-2 h-4 w-4" /> PDF
           </Button>
 
           {role === 'Admin' && (

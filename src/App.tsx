@@ -5,6 +5,8 @@ import { Dashboard } from './pages/Dashboard'
 import { Transactions } from './pages/Transactions'
 import { Login } from './pages/Login'
 import { Toaster } from 'sonner'
+import { VoiceAssistant } from './components/Assistant/VoiceAssistant'
+import { CommandPalette } from './components/UI/CommandPalette'
 
 function App() {
   const { theme, isAuthenticated } = useStore()
@@ -30,6 +32,8 @@ function App() {
 
   return (
     <div className={theme}>
+      <CommandPalette setActivePage={setActivePage} />
+      <VoiceAssistant />
       <Layout activePage={activePage} setActivePage={setActivePage}>
         {activePage === 'dashboard' ? <Dashboard /> : <Transactions />}
       </Layout>

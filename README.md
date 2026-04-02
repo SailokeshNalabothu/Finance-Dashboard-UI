@@ -19,6 +19,12 @@
 - **Advanced Data Table:** Fully sortable grid headers equipped with semantic searching and compound filtering (Type, Category).
 - **Native CSV Data Export:** Native browser Blob generation algorithms permitting seamless one-click downloads of active transaction arrays.
 
+### 🏆 Elite-Tier Portfolio Additions
+- **Progressive Web App (PWA) Capabilities:** Configured natively with service workers enabling fully offline deployment and "Install to Desktop/Mobile" zero-latency rendering structurally.
+- **Global Command Palette:** Implemented a Mac Spotlight-style UI mapped to `Cmd+K` utilizing `cmdk` for immediate keyboard-driven application navigation and mutation execution.
+- **Voice-Controlled AI Assistant:** Integrated an acoustic parser targeting the raw native `webkitSpeechRecognition` API, allowing spoken declarative statements to synthesize and dispatch global state payload mutations (e.g., *"Add 50 dollar expense for food"*).
+- **Generative PDF Invoicing:** Algorithmically generates styled `jsPDF` printable financial statements dynamically directly within the client execution framework.
+
 ### ⚙️ Premium Architecture & UX
 - **Robust Global State:** Centralized `Zustand` architecture utilizing `persist` middleware for resilient `localStorage` memory retention.
 - **Simulated Authentication Gateway:** Route-gated dashboard access shielded behind a pristine frosted-glass login interface block.
